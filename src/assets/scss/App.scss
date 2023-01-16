@@ -1,0 +1,47 @@
+@import 'bootstrap/scss/bootstrap';
+
+#App {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	position: relative;
+}
+
+#initial-loader {
+	display: flex;
+	min-height: 100vh;
+	justify-content: center;
+	align-items: center;
+}
+
+.center-y {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.fetching-spinner {
+	position: absolute;
+	right: 80px;
+	top: 40px;
+}
+
+.invalid {
+	color: $danger;
+	font-size: 0.875em;
+	margin-top: 0.25rem;
+}
+
+.home {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.logo-text {
+	font-family: 'Zen Loop', cursive, sans-serif;
+	font-weight: bold;
+    font-size: 80px;
+}
