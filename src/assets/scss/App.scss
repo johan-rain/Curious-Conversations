@@ -14,6 +14,11 @@
 	align-items: center;
 }
 
+html, body {
+	height: 100%;
+	overflow: hidden;
+}
+
 .center-y {
 	flex-grow: 1;
 	display: flex;
@@ -38,12 +43,29 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 20px;
+}
+
+.logo {
+	width: 150px; /* default size */
+}
+
+@media (min-width: 576px) {
+	.logo {
+		width: 300px; /* larger size for larger screens */
+	}
+}
+
+@media (min-width: 768px) {
+	.logo {
+		width: 450px; /* even larger size for even larger screens */
+	}
 }
 
 .logo-text {
 	font-family: 'Zen Loop', cursive, sans-serif;
 	font-weight: bold;
-    font-size: 80px;
+    font-size: 70px;
 }
 
 .questions {
@@ -55,5 +77,4 @@
 .questions-btn {
 	display: block;
 	margin: 0 auto;
-	margin-bottom: 20px;
 }
