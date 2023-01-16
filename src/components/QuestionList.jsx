@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useGetCollection from '../hooks/useGetCollection'
-
 
 function QuestionList() {
 	const { data, loading } = useGetCollection()
+	const [currentQuestion, setCurrentQuestion] = useState(0)
 
 	if (loading) {
-		return <p>Loading...</p>
+	return <p>Loading...</p>
+	}
+
+	const handleNextQuestion = () => {
+		setCurrentQuestion(Math.floor(Math.random() * data.length))
 	}
 
 	return (
-		<div>
-			{data.map(question => (
-				<p key={question.id}>{question.text}</p>
-			))}
+		<div className='questions'>
+			<p>{data[currentQuestion].text}</p>
+			<button className='questions-btn' onClick={handleNextQuestion}>Next Question</button>
 		</div>
 	)
 }
