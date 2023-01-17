@@ -14,28 +14,11 @@
 	align-items: center;
 }
 
-html, body {
-	height: 100%;
-	overflow: hidden;
-}
-
 .center-y {
 	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-}
-
-.fetching-spinner {
-	position: absolute;
-	right: 80px;
-	top: 40px;
-}
-
-.invalid {
-	color: $danger;
-	font-size: 0.875em;
-	margin-top: 0.25rem;
 }
 
 .home {
@@ -53,7 +36,7 @@ html, body {
 .logo-text {
 	font-family: 'Zen Loop', cursive, sans-serif;
 	font-weight: bold;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 @media (min-width: 576px) {
@@ -61,7 +44,7 @@ html, body {
 		width: 300px; /* larger size for larger screens */
 	}
 	.logo-text {
-		font-size: 55px;
+		font-size: 40px;
 	}
 }
 
@@ -70,7 +53,7 @@ html, body {
 		width: 450px; /* even larger size for even larger screens */
 	}
 	.logo-text {
-		font-size: 70px;
+		font-size: 50px;
 	}
 }
 
@@ -83,4 +66,112 @@ html, body {
 .questions-btn {
 	display: block;
 	margin: 0 auto;
+}
+
+.flip-exit {
+    transform: rotateY(0deg);
+}
+
+.flip-exit-active {
+    transform: rotateY(180deg);
+    transition: transform 300ms;
+    transition-timing-function: cubic-bezier(.57,.21,.69,1.25);
+}
+
+.flip-exit-done {
+    transform: rotateY(180deg);
+}
+
+.flip-enter {
+    transform: rotateY(180deg);
+}
+
+.flip-enter-active {
+    transform: rotateY(0deg);
+    transition: transform 300ms;
+    transition-timing-function: cubic-bezier(.57,.21,.69,1.25);
+}
+
+.flip-enter-done {
+    transform: rotateY(0deg);
+}
+
+.card {
+	/* Sizing */
+	height: 100%;
+	width: 100%;
+	transform-style: preserve-3d;
+	/* Content Alignment */
+	position: relative;
+	/* Styling */
+	border-radius: 5px;
+	border: 5px solid white;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+	user-select: none;
+	cursor: pointer;
+}
+
+.card-front,
+.card-back {
+	/* Sizing */
+	height: 100%;
+	width: 100%;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	/* Alignment */
+	position: absolute;
+	/* Content Alignment */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* Content Styling */
+	font-family: 'Zen Loop', cursive, sans-serif;
+	font-weight: 800;
+	font-size: 30px;
+	color: white;
+	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.card-front {
+	background-color: #73d0ff;
+	flex-direction: column;
+}
+
+.card-back {
+	background-color: #ffad66;
+	transform: rotateY(180deg);
+}
+
+.flippable-card-container {
+	height: 500px;
+	width: 300px;
+	perspective: 1000px;
+}
+
+.flip-exit {
+    transform: rotateY(0deg);
+}
+
+.flip-exit-active {
+    transform: rotateY(180deg);
+    transition: transform 300ms;
+    transition-timing-function: cubic-bezier(.57,.21,.69,1.25);
+}
+
+.flip-exit-done {
+    transform: rotateY(180deg);
+}
+
+.flip-enter {
+    transform: rotateY(180deg);
+}
+
+.flip-enter-active {
+    transform: rotateY(0deg);
+    transition: transform 300ms;
+    transition-timing-function: cubic-bezier(.57,.21,.69,1.25);
+}
+
+.flip-enter-done {
+    transform: rotateY(0deg);
 }
