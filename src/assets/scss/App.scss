@@ -50,9 +50,18 @@ html, body {
 	width: 150px; /* default size */
 }
 
+.logo-text {
+	font-family: 'Zen Loop', cursive, sans-serif;
+	font-weight: bold;
+    font-size: 40px;
+}
+
 @media (min-width: 576px) {
 	.logo {
 		width: 300px; /* larger size for larger screens */
+	}
+	.logo-text {
+		font-size: 55px;
 	}
 }
 
@@ -60,12 +69,9 @@ html, body {
 	.logo {
 		width: 450px; /* even larger size for even larger screens */
 	}
-}
-
-.logo-text {
-	font-family: 'Zen Loop', cursive, sans-serif;
-	font-weight: bold;
-    font-size: 70px;
+	.logo-text {
+		font-size: 70px;
+	}
 }
 
 .questions {

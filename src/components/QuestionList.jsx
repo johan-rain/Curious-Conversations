@@ -1,24 +1,26 @@
-import React, { useState } from 'react'
-import useGetCollection from '../hooks/useGetCollection'
+import React from 'react';
+import useQuestions from '../hooks/useQuestions';
 
 function QuestionList() {
-	const { data, loading } = useGetCollection()
-	const [currentQuestion, setCurrentQuestion] = useState(0)
+	const { 
+		questions,
+		currentQuestion,
+		handleNextQuestion,
+		loading 
+	} = useQuestions();
 
 	if (loading) {
-	return <p>Loading...</p>
-	}
-
-	const handleNextQuestion = () => {
-		setCurrentQuestion(Math.floor(Math.random() * data.length))
+		return <p>Loading...</p>;
 	}
 
 	return (
-		<div className='questions'>
-			<p>{data[currentQuestion].text}</p>
-			<button className='questions-btn' onClick={handleNextQuestion}>Next Question</button>
+		<div className="questions">
+			{questions[currentQuestion] ? <p>{questions[currentQuestion].text}</p> : <p>Loading...</p>}
+			<button className="questions-btn" onClick={handleNextQuestion}>
+				Next Question
+			</button>
 		</div>
-	)
+	);
 }
 
-export default QuestionList
+export default QuestionList;
