@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import useGetCollection from '../hooks/useGetCollection';
 
-export default function useQuestions() {
+const useQuestions = (selectedCategory) => {
 	const [questions, setQuestions] = useState([]);
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const { data, loading } = useGetCollection();
 
 	useEffect(() => {
 		if (!loading) {
-			setQuestions(data);
+			const filteredQuestions = data.filter(question => question.category === selectedCategory);
+			setQuestions(filteredQuestions);
 		}
-	}, [data, loading]);
+	}, [data, loading, selectedCategory]);
 
 	const handleNextQuestion = () => {
-		if (currentQuestion + 1 === filteredQuestions.length) {
+		if (currentQuestion === questions.length - 1) {
 			setCurrentQuestion(0);
 		} else {
 			setCurrentQuestion(currentQuestion + 1);
@@ -27,3 +28,5 @@ export default function useQuestions() {
 		loading
 	};
 }
+
+export default useQuestions

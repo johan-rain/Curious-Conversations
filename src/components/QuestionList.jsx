@@ -3,17 +3,17 @@ import '../assets/scss/App.scss'
 import useQuestions from '../hooks/useQuestions';
 import { Image } from 'react-bootstrap'
 
-function QuestionList({onClick, selectedCategory}) {
+const QuestionList = ({onClick, selectedCategory}) => {
 	const { 
 		questions,
 		currentQuestion,
 		handleNextQuestion,
 		loading 
-	} = useQuestions();
+	} = useQuestions(selectedCategory);
 	
 
-	if (loading) {
-		return <p>Loading...</p>;
+	if (loading || !selectedCategory) {
+		return <p>Choose a new category</p>;
 	}
 
 	const filteredQuestions = questions.filter(question => question.category === selectedCategory);
@@ -33,11 +33,12 @@ function QuestionList({onClick, selectedCategory}) {
 				</div>
 			</div>
 
-			<button className="questions-btn mt-3" onClick={handleNextQuestion}>
+			{questions.length > 0 && (
+				<button className="questions-btn mt-3" onClick={handleNextQuestion}>
 				Next Question
 			</button>
+			)}
 		</>
-		
 	);
 }
 
