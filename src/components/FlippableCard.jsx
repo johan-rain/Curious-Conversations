@@ -3,18 +3,18 @@ import QuestionList from './QuestionList';
 import {CSSTransition} from 'react-transition-group';
 import {useState, useCallback} from 'react';
 
-function FlippableCard() {
+function FlippableCard({selectedCategory}) {
 	const [showFront, setShowFront] = useState(true);
 	const toggleShowFront = useCallback(() => { setShowFront((v) => !v) }, [setShowFront])
 
 	return(
-		<div className="flippable-card-container">
+		<div className="FlippableCard-container">
 			<CSSTransition
 				in={showFront}
 				timeout={300}
 				classNames='flip'
 			>
-				<QuestionList onClick={toggleShowFront}/>
+				<QuestionList onClick={toggleShowFront} selectedCategory={selectedCategory} />
 			</CSSTransition>
 		</div>
 	);

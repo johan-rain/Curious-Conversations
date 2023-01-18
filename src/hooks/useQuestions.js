@@ -8,13 +8,17 @@ export default function useQuestions() {
 
 	useEffect(() => {
 		if (!loading) {
-		setQuestions(data);
+			setQuestions(data);
 		}
 	}, [data, loading]);
 
 	const handleNextQuestion = () => {
-		setCurrentQuestion(Math.floor(Math.random() * questions.length));
-	};
+		if (currentQuestion + 1 === filteredQuestions.length) {
+			setCurrentQuestion(0);
+		} else {
+			setCurrentQuestion(currentQuestion + 1);
+		}
+	}
 
 	return {
 		questions,

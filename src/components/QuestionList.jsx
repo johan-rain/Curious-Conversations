@@ -1,27 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../assets/scss/App.scss'
 import useQuestions from '../hooks/useQuestions';
 import { Image } from 'react-bootstrap'
 
-
-function QuestionList({onClick}) {
+function QuestionList({onClick, selectedCategory}) {
 	const { 
 		questions,
 		currentQuestion,
 		handleNextQuestion,
 		loading 
 	} = useQuestions();
+	
 
 	if (loading) {
 		return <p>Loading...</p>;
 	}
+
+	const filteredQuestions = questions.filter(question => question.category === selectedCategory);
 
 	return (
 		<>
 			<div className="card" onClick={onClick}>
 				<div className="card-back">
 					<div className="questions">
-						{questions[currentQuestion] ? <p>{questions[currentQuestion].text}</p> : <p>Loading...</p>}
+					{filteredQuestions[currentQuestion] ? <p>{filteredQuestions[currentQuestion].text}</p> : <p>Loading...</p>}
 					</div>
 				</div>
 
