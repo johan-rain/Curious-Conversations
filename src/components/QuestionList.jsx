@@ -34,13 +34,21 @@ const QuestionList = ({onClick, selectedCategory, showFront}) => {
 				</div>
 			</div>
 			{/* Only render the next question button if there are questions to display */}
-			{questions.length > 0 && !showFront && (
+			{!showFront && (
 				<>
-					<button className={`prev-btn ${!showFront ? 'show' : ''}`} onClick={handlePrevQuestion}>
-						<FontAwesomeIcon icon={faBackward}/>
-					</button><button className={`next-btn ${!showFront ? 'show' : ''}`} onClick={handleNextQuestion}>
-						<FontAwesomeIcon icon={faForward} />
-					</button>
+					{currentQuestion !== 0 && (
+						<button className={`prev-btn ${!showFront ? 'show' : ''}`} 
+							onClick={handlePrevQuestion}>
+							<FontAwesomeIcon icon={faBackward}/>
+						</button>
+					)}
+
+					{questions.length > 0 && (
+						<button className={`next-btn ${!showFront ? 'show' : ''}`} 
+							onClick={handleNextQuestion}>
+							<FontAwesomeIcon icon={faForward} />
+						</button>
+					)}
 				</>
 			)}
 		</>
