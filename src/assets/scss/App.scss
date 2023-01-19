@@ -55,7 +55,7 @@
 
 .questions {
 	width: 50%;
-	font-size: 40px;
+	font-size: 30px;
 	text-align: center;
 	margin: 0 auto;
 }
@@ -63,6 +63,29 @@
 .questions-btn {
 	display: block;
 	margin: 0 auto;
+}
+
+.prev-btn {
+	left: 0;
+}
+
+.next-btn {
+	right: 0;
+}
+
+.next-btn, .prev-btn {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+	border: none;
+	background: none;
+	z-index: 1;
+	transform: translateY(-50%);
+	top: 50%;
+	position: absolute;
+}
+
+.next-btn.show, .prev-btn.show {
+    opacity: 1;
 }
 
 .flip-exit {

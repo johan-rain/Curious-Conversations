@@ -23,10 +23,19 @@ const useQuestions = (selectedCategory) => {
 		}
 	}
 
+	const handlePrevQuestion = () => {
+		if (currentQuestion > 0) {
+			setCurrentQuestion(0);
+		} else {
+			setCurrentQuestion(currentQuestion - 1);
+		}
+	}
+
 	return {
 		questions,
 		currentQuestion,
 		handleNextQuestion,
+		handlePrevQuestion,
 		loading
 	};
 }

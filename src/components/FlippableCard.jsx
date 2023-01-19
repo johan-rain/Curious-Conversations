@@ -21,7 +21,7 @@ function FlippableCard({selectedCategory, showWelcomeMessage}) {
 					timeout={400}
 					classNames='flip'
 				>
-					<QuestionList onClick={toggleShowFront} selectedCategory={selectedCategory} />
+					<QuestionList onClick={toggleShowFront} selectedCategory={selectedCategory} showFront={showFront}/>
 				</CSSTransition>
 			</div>
 		)
