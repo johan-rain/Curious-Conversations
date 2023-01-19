@@ -10,9 +10,6 @@
 // }
 
 .nav-bar {
-	height: 120px;
-	background: rgb(16,170,181);
-	background: linear-gradient(0deg, rgba(16,170,181,1) 29%, rgba(19,54,64,1) 92%);
 }
 
 #App {
@@ -20,8 +17,8 @@
 	flex-direction: column;
 	min-height: 100vh;
 	position: relative;
-	background: rgb(19,54,64);
-	background: linear-gradient(0deg, rgba(19,54,64,1) 16%, rgba(16,170,181,1) 78%);
+	background: rgb(25,103,114);
+	background: linear-gradient(45deg, rgba(25,103,114,1) 10%, rgba(168,190,193,1) 66%);
 }
 
 #initial-loader {
@@ -47,35 +44,18 @@
 }
 
 .logo {
-	width: 150px; /* default size */
+	width: 350px; 
 }
 
 .logo-text {
 	font-family: 'Zen Loop', cursive, sans-serif;
 	font-weight: bold;
-    font-size: 30px;
-}
-
-@media (min-width: 576px) {
-	.logo {
-		width: 300px; /* larger size for larger screens */
-	}
-	.logo-text {
-		font-size: 40px;
-	}
-}
-
-@media (min-width: 768px) {
-	.logo {
-		width: 450px; /* even larger size for even larger screens */
-	}
-	.logo-text {
-		font-size: 50px;
-	}
+    font-size: 35px;
 }
 
 .questions {
 	width: 50%;
+	font-size: 40px;
 	text-align: center;
 	margin: 0 auto;
 }
@@ -145,17 +125,18 @@
 	font-family: 'Zen Loop', cursive, sans-serif;
 	font-weight: 800;
 	font-size: 30px;
-	color: white;
+	color: #000000;
 	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
 }
 
 .card-front {
-	background-color: #73d0ff;
+	background-color: #196772;
 	flex-direction: column;
+	color: #A8BEC1;
 }
 
 .card-back {
-	background-color: #ffad66;
+	background-color: #A8BEC1;
 	transform: rotateY(180deg);
 }
 
@@ -163,4 +144,38 @@
 	height: 500px;
 	width: 300px;
 	perspective: 1000px;
+}
+
+@media (min-width: 600px) {
+	.logo {
+		width: 450px; /* larger size for larger screens */
+	}
+	.logo-text {
+		font-size: 45px;
+	}
+
+	.FlippableCard-container {
+		height: 550px;
+		width: 350px;
+	}
+	.questions {
+		font-size: 45px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.logo {
+		width: 500px; /* even larger size for even larger screens */
+	}
+	.logo-text {
+		font-size: 45px;
+	}
+
+	.FlippableCard-container {
+		height: 600px;
+		width: 400px;
+	}
+	.questions {
+		font-size: 50px;
+	}
 }

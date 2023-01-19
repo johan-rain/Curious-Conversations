@@ -19,7 +19,7 @@ function CategorySelect({ onSelect, onCategoryChange }) {
 	return (
 		<div className="category-buttons">
 			{categories.map(category => (
-				<button className='mb-4 mx-3' key={category} onClick={() => handleCategorySelect(category)}>
+				<button className='mb-3 mx-2' key={category} onClick={() => handleCategorySelect(category)}>
 					{category}
 				</button>
 			))}

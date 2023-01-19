@@ -10,11 +10,7 @@ const QuestionList = ({onClick, selectedCategory}) => {
 		handleNextQuestion,
 		loading 
 	} = useQuestions(selectedCategory);
-	
-	// If the component is still loading or no category has been selected
-	if (loading || !selectedCategory) {
-		return <p>Choose a new category</p>;
-	}
+
 	// Filter the questions array to only include the ones that match the selected category
 	const filteredQuestions = questions.filter(question => question.category === selectedCategory);
 
@@ -29,13 +25,13 @@ const QuestionList = ({onClick, selectedCategory}) => {
 				</div>
 
 				<div className="card-front">
-					<Image fluid className='logo' src='/src/assets/icons/logo.png' />
+					<Image className='logo' src='/src/assets/icons/logo.png' />
 					<p className='logo-text'>Curious Conversations</p>
 				</div>
 			</div>
 			{/* Only render the next question button if there are questions to display */}
 			{questions.length > 0 && (
-				<button className="questions-btn mt-4" onClick={handleNextQuestion}>
+				<button className="questions-btn mt-3" onClick={handleNextQuestion}>
 				Next
 			</button>
 			)}
