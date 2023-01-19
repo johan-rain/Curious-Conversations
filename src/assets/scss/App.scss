@@ -1,10 +1,27 @@
 @import 'bootstrap/scss/bootstrap';
 
+// colors {
+// 	color: #196772;
+// 	color: #4D747B;
+// 	color: #10AAB5;
+// 	color: #A8BEC1;
+// 	color: #133640;
+// 	color: #000000;
+// }
+
+.nav-bar {
+	height: 120px;
+	background: rgb(16,170,181);
+	background: linear-gradient(0deg, rgba(16,170,181,1) 29%, rgba(19,54,64,1) 92%);
+}
+
 #App {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
 	position: relative;
+	background: rgb(19,54,64);
+	background: linear-gradient(0deg, rgba(19,54,64,1) 16%, rgba(16,170,181,1) 78%);
 }
 
 #initial-loader {

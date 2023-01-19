@@ -9,7 +9,7 @@ const Navigation = () => {
 	const { currentUser, userName, userEmail } = useAuthContext()
 
 	return (
-		<Navbar bg="white" variant="white" expand="md">
+		<Navbar className='nav-bar' variant="white" expand="md">
 			<Container>
 				<Navbar.Brand as={Link} to="/">
 					<img

@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import useCategories from '../hooks/useCategories';
 
-function CategorySelect({ onSelect }) {
+function CategorySelect({ onSelect, onCategoryChange }) {
 	const { categories } = useCategories();
 	const [selectedCategory, setSelectedCategory] = useState();
 
+	// handleCategorySelect function that updates the selected category
+	// and calls the `onSelect` prop with the selected category
 	const handleCategorySelect = (category) => {
+		if (category !== selectedCategory) {
+			onCategoryChange();
+		}
 		setSelectedCategory(category);
 		onSelect(category);
 	}
-
+	// Render a list of buttons with each category as the text
+	// and call the `handleCategorySelect` function when clicked
 	return (
 		<div className="category-buttons">
 			{categories.map(category => (
-				<button className='mb-4' key={category} onClick={() => handleCategorySelect(category)}>
+				<button className='mb-4 mx-3' key={category} onClick={() => handleCategorySelect(category)}>
 					{category}
 				</button>
 			))}

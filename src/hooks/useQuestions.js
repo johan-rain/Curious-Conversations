@@ -10,6 +10,8 @@ const useQuestions = (selectedCategory) => {
 		if (!loading) {
 			const filteredQuestions = data.filter(question => question.category === selectedCategory);
 			setQuestions(filteredQuestions);
+		} else if (selectedCategory) {
+			setQuestions([]);
 		}
 	}, [data, loading, selectedCategory]);
 

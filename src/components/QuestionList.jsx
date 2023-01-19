@@ -11,11 +11,11 @@ const QuestionList = ({onClick, selectedCategory}) => {
 		loading 
 	} = useQuestions(selectedCategory);
 	
-
+	// If the component is still loading or no category has been selected
 	if (loading || !selectedCategory) {
 		return <p>Choose a new category</p>;
 	}
-
+	// Filter the questions array to only include the ones that match the selected category
 	const filteredQuestions = questions.filter(question => question.category === selectedCategory);
 
 	return (
@@ -23,6 +23,7 @@ const QuestionList = ({onClick, selectedCategory}) => {
 			<div className="card" onClick={onClick}>
 				<div className="card-back">
 					<div className="questions">
+						{/* If there is a question for the current index, show it, otherwise show a loading message */}
 					{filteredQuestions[currentQuestion] ? <p>{filteredQuestions[currentQuestion].text}</p> : <p>Loading...</p>}
 					</div>
 				</div>
@@ -32,10 +33,10 @@ const QuestionList = ({onClick, selectedCategory}) => {
 					<p className='logo-text'>Curious Conversations</p>
 				</div>
 			</div>
-
+			{/* Only render the next question button if there are questions to display */}
 			{questions.length > 0 && (
-				<button className="questions-btn mt-3" onClick={handleNextQuestion}>
-				Next Question
+				<button className="questions-btn mt-4" onClick={handleNextQuestion}>
+				Next
 			</button>
 			)}
 		</>
