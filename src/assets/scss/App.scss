@@ -63,7 +63,32 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-bottom: 20px;
+}
+
+.welcome-title {
+	font-size: 60px;
+	margin: 1rem auto;
+	color: #fffefe61;
+	background: -webkit-gradient(linear, left top, right top, from(#e6e6e6), to(#1d1c1c), color-stop(0.8, #ffffff)) no-repeat;
+	background: gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.8, #fff)) no-repeat;
+	background-size: 15px 100%;
+	-webkit-background-clip: text;
+	background-clip: text;
+	animation: flick 1.9s infinite;
+	text-align: center;
+}
+@keyframes flick {
+	0% {
+	background-position: top left;
+	}
+	100% {
+	background-position: top right;
+	}
+}
+
+.welcome-text {
+	color: #ffffff;
+	font-size: 25px;
 }
 
 .logo {
@@ -80,7 +105,6 @@
 	font-size: 20px;
 	color: #ffffff;
 	font-weight: 800;
-	// font-family: 'Courier New', Courier, monospace;
 }
 
 .category-buttons {

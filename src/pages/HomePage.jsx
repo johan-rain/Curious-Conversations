@@ -17,8 +17,8 @@ const HomePage = () => {
 		<Container fluid className='home'>
 			{showWelcomeMessage && (
 				<div className="welcome">
-					<h1 className='welcome-title'>Welcome to Curious Conversations</h1>
-					<p>This app is suppose to help you start up conversations with either strangers or the people closest to you.<br/> Chose a category and lets get started</p>
+					<h1 className='welcome-title'>Welcome to<br/> Curious Conversations</h1>
+					<p className='welcome-text'>This app is suppose to help you start up conversations with either strangers or the people closest to you.<br/><br/>Chose a category and lets get started</p>
 				</div>
 			)}
 			<CategorySelect onSelect={setSelectedCategory} onCategoryChange={handleCategoryChange}/>
