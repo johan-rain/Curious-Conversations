@@ -9,7 +9,29 @@
 // 	color: #000000;
 // }
 
+.navbar-nav .dropdown-menu {
+	position: absolute;
+}
+
 .nav-bar {
+	font-size: 35px;
+	font-weight: bolder;
+}
+
+.card-body {
+	background-color: #196772;
+	color:#ffffff;
+}
+
+.btn.btn-primary {
+	background-color: #10AAB5;
+	color: #000000;
+	border: #196772;
+}
+
+.form-control {
+	background-color: #A8BEC1;
+	color: #000000;
 }
 
 #App {
@@ -19,6 +41,7 @@
 	position: relative;
 	background: rgb(25,103,114);
 	background: linear-gradient(45deg, rgba(25,103,114,1) 10%, rgba(168,190,193,1) 66%);
+	font-family: 'Zen Loop', sans-serif;
 }
 
 #initial-loader {
@@ -48,20 +71,42 @@
 }
 
 .logo-text {
-	font-family: 'Zen Loop', cursive, sans-serif;
 	font-weight: bold;
     font-size: 35px;
+	margin-bottom: 0;
+}
+
+.logo-click {
+	font-size: 20px;
+	color: #ffffff;
+	font-weight: 800;
+	// font-family: 'Courier New', Courier, monospace;
+}
+
+.category-buttons {
+	margin-bottom: 20px;
+}
+
+.category-btn {
+	color: #ffffff;
+	border-radius: 5px;
+	margin: 0 10px 10px 0;
+	background-color: #196772;
+	text-transform: uppercase;
+	font-weight: 800;
+	font-size: 20px;
+	transition: background-color 0.4s ease-in-out;
+}
+
+.category-btn.selected {
+	background-color: #A8BEC1;
+	color: #000000;
 }
 
 .questions {
 	width: 50%;
 	font-size: 30px;
 	text-align: center;
-	margin: 0 auto;
-}
-
-.questions-btn {
-	display: block;
 	margin: 0 auto;
 }
 
@@ -145,7 +190,6 @@
 	justify-content: center;
 	align-items: center;
 	/* Content Styling */
-	font-family: 'Zen Loop', cursive, sans-serif;
 	font-weight: 800;
 	font-size: 30px;
 	color: #000000;
@@ -174,7 +218,7 @@
 		width: 450px; /* larger size for larger screens */
 	}
 	.logo-text {
-		font-size: 45px;
+		font-size: 40px;
 	}
 
 	.FlippableCard-container {
@@ -182,7 +226,7 @@
 		width: 350px;
 	}
 	.questions {
-		font-size: 45px;
+		font-size: 35px;
 	}
 }
 
@@ -199,6 +243,6 @@
 		width: 400px;
 	}
 	.questions {
-		font-size: 50px;
+		font-size: 40px;
 	}
 }

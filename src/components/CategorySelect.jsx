@@ -11,7 +11,7 @@ function CategorySelect({ onSelect, onCategoryChange }) {
 		if (category !== selectedCategory) {
 			onCategoryChange();
 		}
-		setSelectedCategory(category);
+		setSelectedCategory(selectedCategory === category ? null : category);
 		onSelect(category);
 	}
 	// Render a list of buttons with each category as the text
@@ -19,7 +19,7 @@ function CategorySelect({ onSelect, onCategoryChange }) {
 	return (
 		<div className="category-buttons">
 			{categories.map(category => (
-				<button className='mb-3 mx-2' key={category} onClick={() => handleCategorySelect(category)}>
+				<button className={`category-btn ${category === selectedCategory ? 'selected' : ''}`} key={category} onClick={() => handleCategorySelect(category)}>
 					{category}
 				</button>
 			))}

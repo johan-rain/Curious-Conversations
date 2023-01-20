@@ -24,6 +24,7 @@ const QuestionList = ({onClick, selectedCategory, showFront}) => {
 				<div className="card-back">
 					<div className="questions">
 						{/* If there is a question for the current index, show it, otherwise show a loading message */}
+						<p>"{selectedCategory}"</p>
 					{filteredQuestions[currentQuestion] ? <p>{filteredQuestions[currentQuestion].text}</p> : <p>Loading...</p>}
 					</div>
 				</div>
@@ -31,6 +32,7 @@ const QuestionList = ({onClick, selectedCategory, showFront}) => {
 				<div className="card-front">
 					<Image className='logo' src='/src/assets/icons/logo.png' />
 					<p className='logo-text'>Curious Conversations</p>
+					<p className='logo-click'>Click Me</p>
 				</div>
 			</div>
 			{/* Only render the next question button if there are questions to display */}

@@ -17,13 +17,13 @@ const Navigation = () => {
 						width="50"
 						height="50"
 						className="d-inline-block align-items-center"
-						alt="React Bootstrap logo"
+						alt="Curious Conversations logo"
 					/>{' '}
 				</Navbar.Brand>
 
-				<Navbar.Toggle aria-controls="basic-navbar-nav" />
-				<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="ms-auto align-items-center">
+				<Navbar.Toggle aria-controls="" />
+				<Navbar.Collapse id="">
+					<Nav className="nav-bar ms-auto align-items-center">
 						{
 							currentUser ? (
 								<>
