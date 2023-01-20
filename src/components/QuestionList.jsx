@@ -30,7 +30,7 @@ const QuestionList = ({onClick, selectedCategory, showFront}) => {
 				</div>
 
 				<div className="card-front">
-					<Image className='logo' src='/src/assets/icons/logo.png' />
+					<Image className='logo' src='/assets/icons/logo.png' />
 					<p className='logo-text'>Curious Conversations</p>
 					<p className='logo-click'>Click Me</p>
 				</div>

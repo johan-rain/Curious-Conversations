@@ -13,7 +13,7 @@ const Navigation = () => {
 			<Container>
 				<Navbar.Brand as={Link} to="/">
 					<img
-						src="/src/assets/icons/logo.png"
+						src="/assets/icons/logo.png"
 						width="50"
 						height="50"
 						className="d-inline-block align-items-center"
