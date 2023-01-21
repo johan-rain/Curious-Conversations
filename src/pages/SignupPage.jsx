@@ -5,12 +5,11 @@ import { useAuthContext } from '../contexts/AuthContext'
 
 const SignupPage = () => {
 	const emailRef = useRef()
-	const displayNameRef = useRef()
 	const passwordRef = useRef()
 	const passwordConfirmRef = useRef()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
-	const { signup, setDisplayName, reloadUser } = useAuthContext()
+	const { signup, reloadUser } = useAuthContext()
 	const navigate = useNavigate()
 
 	const handleSubmit = async (e) => {
@@ -27,8 +26,6 @@ const SignupPage = () => {
 			// set loading status and call signup function
 			setLoading(true)
 			await signup(emailRef.current.value, passwordRef.current.value)
-			// call setDisplayName function to set displayName for user
-			await setDisplayName(displayNameRef.current.value)
 			// call reloadUser function to update user data
 			await reloadUser()
 			// navigate to homepage
@@ -49,11 +46,6 @@ const SignupPage = () => {
 							{error && (<Alert variant="danger">{error}</Alert>)}
 
 							<Form onSubmit={handleSubmit}>
-
-								<Form.Group id="displayName" className="mb-2">
-									<Form.Label>Name</Form.Label>
-									<Form.Control type="text" ref={displayNameRef} />
-								</Form.Group>
 
 								<Form.Group id="email" className="mb-2">
 									<Form.Label>Email</Form.Label>
@@ -76,7 +68,7 @@ const SignupPage = () => {
 						</Card.Body>
 					</Card>
 
-					<div className="text-center mt-3">
+					<div className="user-links text-center mt-3">
 						Already have an account? <Link to="/login">Log In</Link>
 					</div>
 		</Container>

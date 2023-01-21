@@ -7,6 +7,7 @@ const UpdateProfilePage = () => {
 	const emailRef = useRef()
 	const passwordRef = useRef()
 	const passwordConfirmRef = useRef()
+	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
 	const [message, setMessage] = useState(null)
 	const {
@@ -15,8 +16,6 @@ const UpdateProfilePage = () => {
 		setDisplayName,
 		setEmail,
 		setPassword,
-		error,
-		setError
 	} = useAuthContext()
 
 	const handleSubmit = async (e) => {
