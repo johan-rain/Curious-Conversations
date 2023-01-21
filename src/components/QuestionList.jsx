@@ -20,7 +20,7 @@ const QuestionList = ({onClick, selectedCategory, showFront}) => {
 
 	return (
 		<>
-			<div className="card" onClick={onClick}>
+			<div className="q-card" onClick={onClick}>
 				<div className="card-back">
 					<div className="questions">
 						{/* If there is a question for the current index, show it, otherwise show a loading message */}
