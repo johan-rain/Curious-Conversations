@@ -31,6 +31,8 @@ const Navigation = () => {
 										userName || userEmail
 									}>
 										<NavLink to="/update-profile" className="dropdown-item">Update Profile</NavLink>
+										{/* 
+										<NavDropdown.Divider /><NavLink to="/liked-questions" className="dropdown-item">Liked Questions</NavLink> */}
 										<NavDropdown.Divider />
 										<NavLink to="/logout" className="dropdown-item">Log Out</NavLink>
 									</NavDropdown>

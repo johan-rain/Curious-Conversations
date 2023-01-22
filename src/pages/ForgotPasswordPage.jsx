@@ -61,7 +61,7 @@ const ForgotPasswordPage = () => {
 					</Card>
 
 					<div className="text-center mt-3">
-						Suddenly remembered your password?<br/>
+							Remembered your password?<br/>
 						<Link to="/login">Log In</Link>
 					</div>
 				</Col>

@@ -4,7 +4,7 @@ import useGetCollection from '../hooks/useGetCollection';
 
 const useHandleLikes = () => {
     const [error, setError] = useState(null);
-    const { data, loading } = useGetCollection();
+    const { data } = useGetCollection();
     const questionId = data && data[0] ? data[0].id : null;
 
     useEffect(() => {
@@ -15,11 +15,20 @@ const useHandleLikes = () => {
         }
     }, [questionId]);
 
-    const likeQuestion = async () => {
+    const likeQuestion = async (questionId) => {
         if (error || !auth.currentUser) {
             return;
         }
+		console.log("questionId: ", questionId);
+		console.log("path to collection: ", db.collection('Questions'));
+
         try {
+            // get question's doc reference
+            const questionRef = db.collection('Questions').doc(questionId);
+            // update the isLiked field
+            await questionRef.update({
+                isLiked: true,
+            });
             // get user's doc reference
             const docRef = db.collection('users').doc(auth.currentUser.uid);
             // update the likedQuestions field by adding the questionId
@@ -27,15 +36,22 @@ const useHandleLikes = () => {
                 likedQuestions: db.FieldValue.arrayUnion(questionId),
             });
         } catch (err) {
+			console.log("Error: ", err.message);
             setError(err.message);
         }
     };
 
-    const unlikeQuestion = async () => {
+    const unlikeQuestion = async (questionId) => {
         if (error || !auth.currentUser) {
             return;
         }
         try {
+             // get question's doc reference
+            const questionRef = db.collection('Questions').doc(questionId);
+             // update the isLiked field
+            await questionRef.update({
+                isLiked: false,
+            });
             // get user's doc reference
             const docRef = db.collection('users').doc(auth.currentUser.uid);
             // update the likedQuestions field by removing the questionId

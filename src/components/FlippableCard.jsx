@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import '../assets/scss/App.scss';
 import QuestionList from './QuestionList';
 import {CSSTransition} from 'react-transition-group';
-import {useState, useCallback} from 'react';
 
 function FlippableCard({selectedCategory, showWelcomeMessage}) {
 	const [showFront, setShowFront] = useState(true);

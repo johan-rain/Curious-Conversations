@@ -8,6 +8,7 @@ import LogoutPage from './pages/LogoutPage'
 import NotFound from './pages/NotFound'
 import SignupPage from './pages/SignupPage'
 import UpdateProfilePage from './pages/UpdateProfilePage'
+import LikedQuestions from './pages/LikedQuestions'
 import './assets/scss/App.scss'
 
 function App() {
@@ -28,6 +29,11 @@ function App() {
 						<UpdateProfilePage />
 					</RequireAuth>
 				} />
+				{/* <Route path="/liked-questions" element={
+					<RequireAuth>
+						<LikedQuestions />
+					</RequireAuth>
+				} /> */}
 			</Routes>
 		</div>
 	)
