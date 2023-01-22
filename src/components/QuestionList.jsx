@@ -1,18 +1,18 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 import '../assets/scss/App.scss'
 import useQuestions from '../hooks/useQuestions';
-// import useHandleLikes from '../hooks/useHandleLikes';
+import useHandleLikes from '../hooks/useHandleLikes';
 import { Image } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faForward, faBackward } from '@fortawesome/free-solid-svg-icons'
-// import { useAuthContext } from '../contexts/AuthContext';
+import { faForward, faBackward, faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons'
+import { useAuthContext } from '../contexts/AuthContext';
 
 
 const QuestionList = ({onClick, selectedCategory, showFront}) => {
-	// const { currentUser } = useAuthContext();
-	// const { likeQuestion, unlikeQuestion } = useHandleLikes();
-	// const [isLiked, setIsLiked] = useState(false);
-	// const [isLoading, setIsLoading] = useState(false);
+	const { currentUser } = useAuthContext();
+	const { likeQuestion, unlikeQuestion } = useHandleLikes();
+	const [isLiked, setIsLiked] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const { 
 		questions,
 		currentQuestion,
@@ -24,25 +24,25 @@ const QuestionList = ({onClick, selectedCategory, showFront}) => {
 	const filteredQuestions = questions.filter(question => question.category === selectedCategory);
 	
 	// CODE DOES NOT WORK YET
-	// const handleLikeClick = async () => {
-	// 	if (!currentUser) {
-	// 		alert('Please login to like or unlike a question.');
-	// 		return;
-	// 	}
-	// 	if (!filteredQuestions[currentQuestion]) {
-	// 		return;
-	// 	}
-	// 	setIsLoading(true);
-	// 	const questionId = filteredQuestions[currentQuestion].id;
-	// 	if (isLiked) {
-	// 		await unlikeQuestion(questionId);
-	// 		setIsLiked(false);
-	// 	} else {
-	// 		await likeQuestion(questionId);
-	// 		setIsLiked(true);
-	// 	}
-	// 	setIsLoading(false);
-	// };
+	const handleLikeClick = async () => {
+		if (!currentUser) {
+			alert('Please login to like or unlike a question.');
+			return;
+		}
+		if (!filteredQuestions[currentQuestion]) {
+			return;
+		}
+		setIsLoading(true);
+		const questionId = filteredQuestions[currentQuestion].id;
+		if (isLiked) {
+			await unlikeQuestion(questionId);
+			setIsLiked(false);
+		} else {
+			await likeQuestion(questionId);
+			setIsLiked(true);
+		}
+		setIsLoading(false);
+	};
 
 	return (
 		<>
@@ -78,9 +78,9 @@ const QuestionList = ({onClick, selectedCategory, showFront}) => {
 						</button>
 					)}
 					{/* Code does not work yet */}
-					{/* <button className='like-btn' onClick={handleLikeClick}> 
-						{isLoading ? "Loading..." : isLiked ? <FontAwesomeIcon icon={faForward} /> : <FontAwesomeIcon icon={faBackward} />}
-					</button> */}
+					<button className='like-btn' onClick={handleLikeClick}> 
+						{isLoading ? "Loading..." : isLiked ? <FontAwesomeIcon icon={faHeart} /> : <FontAwesomeIcon icon={faHeartBroken} />}
+					</button>
 				</>
 			)}
 		</>

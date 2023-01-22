@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import { auth, db } from '../firebase';
-import useGetCollection from '../hooks/useGetCollection';
 
 const useHandleLikes = () => {
     const [error, setError] = useState(null);
-    const { data } = useGetCollection();
-    const questionId = data && data[0] ? data[0].id : null;
+    const [questionId, setQuestionId] = useState(null);
 
     useEffect(() => {
         if (!questionId) {
@@ -19,25 +17,20 @@ const useHandleLikes = () => {
         if (error || !auth.currentUser) {
             return;
         }
-		console.log("questionId: ", questionId);
-		console.log("path to collection: ", db.collection('Questions'));
 
         try {
-            // get question's doc reference
-            const questionRef = db.collection('Questions').doc(questionId);
-            // update the isLiked field
-            await questionRef.update({
-                isLiked: true,
-            });
-            // get user's doc reference
-            const docRef = db.collection('users').doc(auth.currentUser.uid);
-            // update the likedQuestions field by adding the questionId
-            await docRef.update({
-                likedQuestions: db.FieldValue.arrayUnion(questionId),
+            // Get the question document reference
+            const questionDocRef = db.doc(`Questions/${questionId}`);
+            // Update the isLiked field
+            await questionDocRef.update({ isLiked: true });
+            // Get the user's document reference
+            const userDocRef = db.doc(`users/${auth.currentUser.uid}`);
+            // Add the liked question to the user's likedQuestions field
+            await userDocRef.update({
+                likedQuestions: db.FieldValue.arrayUnion(questionId)
             });
         } catch (err) {
-			console.log("Error: ", err.message);
-            setError(err.message);
+            console.error('Error liking question: ', err);
         }
     };
 
@@ -45,21 +38,20 @@ const useHandleLikes = () => {
         if (error || !auth.currentUser) {
             return;
         }
+
         try {
-             // get question's doc reference
-            const questionRef = db.collection('Questions').doc(questionId);
-             // update the isLiked field
-            await questionRef.update({
-                isLiked: false,
-            });
-            // get user's doc reference
-            const docRef = db.collection('users').doc(auth.currentUser.uid);
-            // update the likedQuestions field by removing the questionId
-            await docRef.update({
-                likedQuestions: db.FieldValue.arrayRemove(questionId),
+            // Get the question document reference
+            const questionDocRef = db.doc(`Questions/${questionId}`);
+            // Update the isLiked field
+            await questionDocRef.update({ isLiked: false });
+            // Get the user's document reference
+            const userDocRef = db.doc(`users/${auth.currentUser.uid}`);
+            // Remove the unliked question from the user's likedQuestions field
+            await userDocRef.update({
+                likedQuestions: db.FieldValue.arrayRemove(questionId)
             });
         } catch (err) {
-            setError(err.message);
+            console.error('Error unliking question: ', err);
         }
     };
 

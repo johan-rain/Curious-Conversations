@@ -29,11 +29,11 @@ function App() {
 						<UpdateProfilePage />
 					</RequireAuth>
 				} />
-				{/* <Route path="/liked-questions" element={
+				<Route path="/liked-questions" element={
 					<RequireAuth>
 						<LikedQuestions />
 					</RequireAuth>
-				} /> */}
+				} />
 			</Routes>
 		</div>
 	)

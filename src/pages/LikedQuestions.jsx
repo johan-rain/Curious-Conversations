@@ -6,25 +6,26 @@ const LikedQuestions = () => {
 	const { currentUser } = useAuthContext();
 	const [likedQuestions, setLikedQuestions] = useState([]);
 
-	useEffect(() => {
-		if (!currentUser) return;
+	// useEffect(() => {
+	// 	if (!currentUser) return;
 
-		const unsubscribe = db.collection("users")
-			.doc(currentUser.uid)
-			.onSnapshot(snapshot => {
-			setLikedQuestions(snapshot.data().likedQuestions);
-			});
-		return () => unsubscribe();
-	}, [currentUser]);
+	// 	const unsubscribe = db.collection("users")
+	// 		.doc(currentUser.uid)
+	// 		.onSnapshot(snapshot => {
+	// 		setLikedQuestions(snapshot.data().likedQuestions);
+	// 		});
+	// 	return () => unsubscribe();
+	// }, [currentUser]);
 
 	return (
 		<div>
-			<h2>Liked Questions</h2>
+			{/* <h2>Liked Questions</h2>
 			{likedQuestions.map(question => (
 				<div key={question.id}>
 					<p>{question.text}</p>
 				</div>
-			))}
+			))} */}
+			<h1 className='text-center'>This feature will come in the future</h1>
 		</div>
 	);
 	};
