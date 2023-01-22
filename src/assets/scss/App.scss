@@ -280,6 +280,10 @@
 	.questions-title {
 		font-size: 60px;
 	}
+	.category-btn {
+		font-size: 15px;
+		margin: 0 5px;
+	}
 }
 
 @media (min-width: 1200px) {
@@ -299,5 +303,9 @@
 	}
 	.questions-title {
 		font-size: 60px;
+	}
+	.category-btn {
+		font-size: 20px;
+		margin: 0 5px;
 	}
 }
