@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound'
 import SignupPage from './pages/SignupPage'
 import UpdateProfilePage from './pages/UpdateProfilePage'
 import LikedQuestions from './pages/LikedQuestions'
+import SubmitQuestion from './pages/SubmitQuestions'
 import './assets/scss/App.scss'
 
 function App() {
@@ -32,6 +33,11 @@ function App() {
 				<Route path="/liked-questions" element={
 					<RequireAuth>
 						<LikedQuestions />
+					</RequireAuth>
+				} />
+				<Route path="/submit-question" element={
+					<RequireAuth>
+						<SubmitQuestion />
 					</RequireAuth>
 				} />
 			</Routes>
