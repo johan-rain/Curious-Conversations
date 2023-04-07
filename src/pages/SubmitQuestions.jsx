@@ -8,7 +8,7 @@ const SubmitQuestion = () => {
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [question, setQuestion] = useState('');
-	const [category, setCategory] = useState('Icebreakers'); // Set your default category here
+	const [category, setCategory] = useState('Icebreakers');
 	const { currentUser } = useAuthContext();
 
 	const handleSubmit = async (e) => {
@@ -23,15 +23,15 @@ const SubmitQuestion = () => {
 		setLoading(true);
 
 		try {
-			const pendingQuestionsRef = collection(db, 'pending_questions'); // Use the collection() function
-			await addDoc(pendingQuestionsRef, { // Use the addDoc() function
+			const pendingQuestionsRef = collection(db, 'pending_questions');
+			await addDoc(pendingQuestionsRef, {
 				text: question,
 				category: category,
 				userId: currentUser.uid,
 			});
 
 		setQuestion('');
-		setCategory('Icebreakers'); // Set your default category here
+		setCategory('Icebreakers');
 		setLoading(false);
 		} catch (err) {
 		setError('Failed to submit question.');
