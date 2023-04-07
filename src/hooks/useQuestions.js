@@ -4,40 +4,46 @@ import useGetCollection from '../hooks/useGetCollection';
 const useQuestions = (selectedCategory) => {
 	const [questions, setQuestions] = useState([]);
 	const [currentQuestion, setCurrentQuestion] = useState(0);
+	const [questionOrder, setQuestionOrder] = useState([]);
 	const { data, loading } = useGetCollection();
 
 	useEffect(() => {
 		if (!loading) {
-			const filteredQuestions = data.filter(question => question.category === selectedCategory);
-			setQuestions(filteredQuestions);
-		} else if (selectedCategory) {
-			setQuestions([]);
-		}
+			const filteredQuestions = data.filter(
+			(question) => question.category === selectedCategory
+	);
+		setQuestions(filteredQuestions);
+		setQuestionOrder([]);
+		setCurrentQuestion(0);
+	} else if (selectedCategory) {
+		setQuestions([]);
+	}
 	}, [data, loading, selectedCategory]);
 
 	const handleNextQuestion = () => {
-		if (currentQuestion === questions.length - 1) {
-			setCurrentQuestion(0);
-		} else {
-			setCurrentQuestion(currentQuestion + 1);
-		}
-	}
+		let newIndex;
+		do {
+			newIndex = Math.floor(Math.random() * questions.length);
+		} while (questionOrder.includes(newIndex));
+
+		setQuestionOrder([...questionOrder, newIndex]);
+		setCurrentQuestion(newIndex);
+	};
 
 	const handlePrevQuestion = () => {
-		if (currentQuestion > 0) {
-			setCurrentQuestion(0);
-		} else {
-			setCurrentQuestion(currentQuestion - 1);
+		const prevIndex = questionOrder.indexOf(currentQuestion) - 1;
+		if (prevIndex >= 0) {
+		setCurrentQuestion(questionOrder[prevIndex]);
 		}
-	}
+	};
 
 	return {
 		questions,
 		currentQuestion,
 		handleNextQuestion,
 		handlePrevQuestion,
-		loading
+		loading,
 	};
-}
+};
 
-export default useQuestions
+export default useQuestions;
