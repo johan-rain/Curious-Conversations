@@ -10,6 +10,7 @@ import SignupPage from './pages/SignupPage'
 import UpdateProfilePage from './pages/UpdateProfilePage'
 import LikedQuestions from './pages/LikedQuestions'
 import SubmitQuestion from './pages/SubmitQuestions'
+import AdminPage from './pages/AdminPage'
 import './assets/scss/App.scss'
 
 function App() {
@@ -38,6 +39,11 @@ function App() {
 				<Route path="/submit-question" element={
 					<RequireAuth>
 						<SubmitQuestion />
+					</RequireAuth>
+				} />
+				<Route path="/admin" element={
+					<RequireAuth>
+						<AdminPage />
 					</RequireAuth>
 				} />
 			</Routes>

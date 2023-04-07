@@ -36,6 +36,8 @@ const Navigation = () => {
 										<NavDropdown.Divider />
 										<NavLink to="/submit-question" className="dropdown-item">Submit Questions</NavLink>
 										<NavDropdown.Divider />
+										<NavLink to="/admin" className="dropdown-item">Admin</NavLink>
+										<NavDropdown.Divider />
 										<NavLink to="/logout" className="dropdown-item">Log Out</NavLink>
 									</NavDropdown>
 								</>
