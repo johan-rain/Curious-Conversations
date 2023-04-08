@@ -11,6 +11,7 @@ const AdminPage = () => {
 	const [newQuestion, setNewQuestion] = useState({ text: '', category: '' });
 	const [editingQuestion, setEditingQuestion] = useState(null);
 	const [showModal, setShowModal] = useState(false);
+	const [selectedCategory, setSelectedCategory] = useState('');
 
 	// Add new function to fetch all questions
 	const fetchQuestions = async () => {
@@ -29,6 +30,23 @@ const AdminPage = () => {
 	useEffect(() => {
 		fetchQuestions();
 	}, []);
+
+	// Render a new function to render the category buttons
+	const renderCategoryButtons = () => {
+		// Define your categories here
+		const categories = ['Icebreakers', 'Relationship', 'Deeper'];
+	
+		return categories.map((category) => (
+			<Button
+				key={category}
+				className="me-2 mb-3"
+				variant={selectedCategory === category ? 'primary' : 'outline-primary'}
+				onClick={() => setSelectedCategory(category)}
+			>
+				{category}
+			</Button>
+		));
+	};
 
 	// Add new function to handle input change for new and edited questions
 	const handleInputChange = (e, setQuestion) => {
@@ -114,7 +132,9 @@ const AdminPage = () => {
 	return (
 		<Container className="py-3">
 			<h2 className="text-center mb-4">Admin Page</h2>
-			<h3 className="text-center mb-4">Submitted Questions</h3>
+			<h3 className="text-center mb-4">
+				{pendingQuestions.length > 0 ? 'Submitted Questions' : 'No submitted questions at this time'}
+			</h3>
 			{error && <Alert variant="danger">{error}</Alert>}
 			{loading ? (<p>Loading...</p>) 
 				: (
@@ -146,7 +166,7 @@ const AdminPage = () => {
 							name="text"
 							value={newQuestion.text}
 							onChange={(e) => handleInputChange(e, setNewQuestion)}
-							placeholder="Enter new question"
+							placeholder="Add new question"
 						/>
 					</Col>
 
@@ -169,8 +189,15 @@ const AdminPage = () => {
 					</Col>
 				</Form.Group>
 			</Form>
+
+			<div className="d-flex justify-content-center mb-3">
+				{renderCategoryButtons()}
+			</div>
+			
 			<Row>
-				{questions.map((question) => (
+			{questions
+				.filter((question) => question.category === selectedCategory)
+				.map((question) => (
 					<Col key={question.id} xs={12} md={6} lg={4} className="mb-3">
 					<Card className='card-container'>
 					<Card.Body className='card-content'>
