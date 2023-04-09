@@ -54,8 +54,7 @@ const UpdateProfilePage = () => {
 			setLoading(false)
 
 		} catch (e) {
-			//log error message and set error and loading state to false
-			console.log("Error updating profile", e)
+			//set error and loading state to false
 			setError(e.message)
 			setLoading(false)
 		}

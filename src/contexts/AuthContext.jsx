@@ -10,6 +10,7 @@ import {
 	updateProfile,
 } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
+import { getDoc, collection, query } from 'firebase/firestore';
 import { auth, db } from '../firebase'
 import SyncLoader from 'react-spinners/SyncLoader'
 
@@ -24,7 +25,7 @@ const AuthContextProvider = ({ children }) => {
 	const [userName, setUserName] = useState(null)
 	const [userEmail, setUserEmail] = useState(null)
 	const [loading, setLoading] = useState(true)
-
+	const [userRole, setUserRole] = useState('');
 
 	const signup = async (email, password, name) => {
 		// create the user
@@ -77,14 +78,28 @@ const AuthContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
-			setCurrentUser(user)
-			setUserName(user?.displayName)
-			setUserEmail(user?.email)
-			setLoading(false)
-		})
+		setCurrentUser(user);
+		setUserName(user?.displayName);
+		setUserEmail(user?.email);
+	
+		if (user) {
+			// Fetch the user's role from Firestore when a user is logged in
+			const userDocRef = doc(db, 'users', user.uid);
+			getDoc(userDocRef).then((doc) => {
+			if (doc.exists()) {
+				const data = doc.data();
+				setUserRole(data.role || '');
+			}
+			});
+		} else {
+			setUserRole(''); // Reset the userRole when a user is logged out
+		}
+	
+		setLoading(false);
+		});
 
-		return unsubscribe
-	}, [])
+		return unsubscribe;
+	}, []);
 
 	const contextValues = {
 		currentUser,
@@ -98,6 +113,7 @@ const AuthContextProvider = ({ children }) => {
 		setPassword,
 		userName,
 		userEmail,
+		userRole,
 	}
 
 	return (

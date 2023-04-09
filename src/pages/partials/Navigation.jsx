@@ -4,9 +4,20 @@ import Nav from 'react-bootstrap/Nav'
 import { Link, NavLink } from 'react-router-dom'
 import { useAuthContext } from '../../contexts/AuthContext'
 import { NavDropdown } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react';
 
 const Navigation = () => {
-	const { currentUser, userName, userEmail } = useAuthContext()
+	const { currentUser, userName, userEmail, userRole } = useAuthContext()
+
+	const [isAdmin, setIsAdmin] = useState(false);
+
+	useEffect(() => {
+		if (userRole === 'admin') {
+		setIsAdmin(true);
+		} else {
+		setIsAdmin(false);
+		}
+	}, [userRole]);
 
 	return (
 		<Navbar className='nav-bar' variant="white" expand="md">
@@ -27,16 +38,33 @@ const Navigation = () => {
 						{
 							currentUser ? (
 								<>
-									<NavDropdown title={
-										userName || userEmail
-									}>
+									<NavDropdown
+										title={
+											<>
+												{userName || userEmail}
+												{isAdmin && (
+												<img
+													src="/assets/icons/admin.png"
+													width="16"
+													height="16"
+													className="ms-2"
+													alt="Admin icon"
+												/>
+												)}
+											</>
+										}
+										>
 										<NavLink to="/update-profile" className="dropdown-item">Update Profile</NavLink>
 										<NavDropdown.Divider />
 										<NavLink to="/liked-questions" className="dropdown-item">Liked Questions</NavLink>
 										<NavDropdown.Divider />
 										<NavLink to="/submit-question" className="dropdown-item">Submit Questions</NavLink>
+										{isAdmin && (
+										<>
 										<NavDropdown.Divider />
 										<NavLink to="/admin" className="dropdown-item">Admin</NavLink>
+										</>
+										)}
 										<NavDropdown.Divider />
 										<NavLink to="/logout" className="dropdown-item">Log Out</NavLink>
 									</NavDropdown>
