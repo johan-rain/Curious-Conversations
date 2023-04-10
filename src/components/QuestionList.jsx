@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../assets/scss/App.scss'
 import useQuestions from '../hooks/useQuestions';
 import useHandleLikes from '../hooks/useHandleLikes';
@@ -8,7 +8,7 @@ import { faForward, faBackward, faHeart, faHeartBroken } from '@fortawesome/free
 import { useAuthContext } from '../contexts/AuthContext';
 
 
-const QuestionList = ({onClick, selectedCategory, showFront}) => {
+const QuestionList = ({ onClick, selectedCategory, showFront, likedQuestions }) => {
 	const { currentUser } = useAuthContext();
 	const { likeQuestion, unlikeQuestion } = useHandleLikes();
 	const [isLiked, setIsLiked] = useState(false);
@@ -23,7 +23,6 @@ const QuestionList = ({onClick, selectedCategory, showFront}) => {
 	// Filter the questions array to only include the ones that match the selected category
 	const filteredQuestions = questions.filter(question => question.category === selectedCategory);
 	
-	// CODE DOES NOT WORK YET
 	const handleLikeClick = async () => {
 		if (!currentUser) {
 			alert('Please login to like or unlike a question.');
@@ -34,15 +33,26 @@ const QuestionList = ({onClick, selectedCategory, showFront}) => {
 		}
 		setIsLoading(true);
 		const questionId = filteredQuestions[currentQuestion].id;
+		const userId = currentUser.uid;
+
 		if (isLiked) {
-			await unlikeQuestion(questionId);
+			await unlikeQuestion(questionId, userId);
 			setIsLiked(false);
 		} else {
-			await likeQuestion(questionId);
+			await likeQuestion(questionId, userId);
 			setIsLiked(true);
 		}
 		setIsLoading(false);
 	};
+
+	useEffect(() => {
+		if (!currentUser || !filteredQuestions[currentQuestion]) {
+			setIsLiked(false);
+		} else {
+			const currentQuestionId = filteredQuestions[currentQuestion].id;
+			setIsLiked(likedQuestions.includes(currentQuestionId));
+		}
+	}, [currentUser, currentQuestion, likedQuestions]);
 
 	return (
 		<>
