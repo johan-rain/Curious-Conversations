@@ -87,7 +87,6 @@ const QuestionList = ({ onClick, selectedCategory, showFront, likedQuestions }) 
 							<FontAwesomeIcon icon={faForward} />
 						</button>
 					)}
-					{/* Code does not work yet */}
 					<button className='like-btn' onClick={handleLikeClick}> 
 						{isLoading ? "Loading..." : isLiked ? <FontAwesomeIcon icon={faHeart} /> : <FontAwesomeIcon icon={faHeartBroken} />}
 					</button>
