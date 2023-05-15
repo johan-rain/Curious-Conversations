@@ -160,7 +160,7 @@ const AdminPage = () => {
 			<h3 className="text-center mb-4">All Questions</h3>
 			<Form>
 				<Form.Group as={Row} className="mb-3">
-					<Col sm={8}>
+					<Col sm={8} className='mb-3'>
 						<Form.Control
 							type="text"
 							name="text"
@@ -170,7 +170,7 @@ const AdminPage = () => {
 						/>
 					</Col>
 
-					<Col sm={3}>
+					<Col sm={3} className='mb-3'>
 						<Form.Control
 							as="select"
 							name="category"
